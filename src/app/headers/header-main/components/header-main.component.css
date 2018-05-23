@@ -1,0 +1,16 @@
+
+.toolbar-fill {
+    flex: 1 1 auto;
+}
+  
+mat-toolbar{
+    position: sticky;
+    position: -webkit-sticky;
+    -webkit-flex: 0 0 100px;
+    -moz-flex: 0 0 100px;
+    -ms-flex: 0 0 100px;
+    flex: 0 0 100px;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 9;
+}

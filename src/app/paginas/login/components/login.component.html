@@ -1,0 +1,42 @@
+
+<mat-card>
+  <mat-card-title>
+        Faça login em sua conta
+  </mat-card-title>
+  <mat-card-content>
+    <form  fxLayout="column" [formGroup]="userForm" fxLayoutAlign="start stretch"
+    (ngSubmit)="login()">
+      
+      <mat-form-field class="full-width">
+        <input type="email" id="email" class="input" placeholder="Insira seu e-mail"
+                formControlName="email" required matInput [(ngModel)]="email">
+      </mat-form-field>
+      <mat-error *ngIf="formErrors.email">{{ formErrors.email }}</mat-error>
+      <mat-form-field class="full-width">
+        <input [type]="hide ? 'text' : 'password'" id="password" class="input" placeholder="Insira sua senha"
+                formControlName="password" required matInput [(ngModel)]="password">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field> 
+      <mat-error *ngIf="formErrors.password">{{ formErrors.password }}</mat-error>
+      
+      <div *ngIf="!iniciouLogin" class="container-btn">
+        <button mat-raised-button color="primary" type="submit" 
+        [disabled]="!userForm.valid"
+        class="full-width full-height"
+        >Estou pronto, entrar :)</button>
+      </div>
+    </form>
+    <div class="container-errors" *ngIf="formErrors.login">
+      <mat-error *ngIf="formErrors.login">{{ formErrors.login }}</mat-error>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+      <div class="container-btn-outros">
+        Não tem uma conta?
+        <button mat-raised-button color="warn" matTooltip="{{toolTipBtnRegistrar}}" (click)="cadastrar()"
+          [disabled]="iniciouLogin"
+          class="full-height">Criar conta</button>
+      </div>
+  </mat-card-actions>
+</mat-card>
+<app-progress *ngIf="iniciouLogin"></app-progress>

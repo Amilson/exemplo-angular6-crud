@@ -1,0 +1,48 @@
+mat-card{
+    top: 0 !important;
+    max-width: 300px;
+}
+
+mat-card-title{
+    align: center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.alinha-frente{
+    flex: 1 1 auto;
+}
+
+.container-btn {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 100%;
+    height: 60px;
+    align-items: center;
+}
+
+.container-errors {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 100%;
+    height: 20px;
+    margin-top: 1px;
+    align-items: center;
+}
+
+.container-btn-outros {
+    align-items: center;
+    justify-content: space-around;
+}
+
+.progressVerificaEmail{
+    
+}

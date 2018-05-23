@@ -1,0 +1,58 @@
+<mat-card>
+  <mat-card-title>              
+      Criando uma conta
+  </mat-card-title>
+  <mat-card-content>
+    <form  fxLayout="column" [formGroup]="userForm" fxLayoutAlign="start stretch"
+    (ngSubmit)="cadastrar()">
+      <div class="container-btn-outros">
+        <mat-form-field class="full-width alinha-frente">
+          <input type="email" id="email" class="input" placeholder="E-mail"
+                    formControlName="email" required matInput [(ngModel)]="email"
+                    (focusout)="verificaEmail()">
+          <mat-icon matSuffix><mat-spinner *ngIf="iniciouVerificaEmail" class="progressVerificaEmail" diameter="20"></mat-spinner></mat-icon>
+        </mat-form-field>
+      </div>
+      
+      <div class="container-errors" *ngIf="formErrors.emailExiste || formErrors.email">
+        <mat-error *ngIf="formErrors.emailExiste">{{ formErrors.emailExiste }}</mat-error>  
+        <mat-error *ngIf="formErrors.email">{{ formErrors.email }}</mat-error>
+      </div>
+
+      <mat-form-field class="full-width">
+        <input type="nome" id="nome" class="input" placeholder="Nome completo"
+                formControlName="nome" required matInput [(ngModel)]="nome">
+      </mat-form-field>
+      <mat-error *ngIf="formErrors.nome">{{ formErrors.nome }}</mat-error>
+
+      <mat-form-field class="full-width">
+        <input [type]="hide ? 'text' : 'password'" id="password" class="input" placeholder="Escolha uma senha"
+                formControlName="password" required matInput [(ngModel)]="password">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field> 
+      <mat-error *ngIf="formErrors.password">{{ formErrors.password }}</mat-error>
+      <mat-form-field class="full-width">
+        <input [type]="hide ? 'text' : 'password'" id="passwordx2" class="input" placeholder="Repita a senha"
+                  formControlName="passwordx2" required matInput [(ngModel)]="passwordx2">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field> 
+      <mat-error *ngIf="formErrors.passwordx2">{{ formErrors.passwordx2 }}</mat-error>
+      
+      <div class="container-btn">
+          <button mat-raised-button color="primary" type="submit" 
+          [disabled]="!userForm.valid"
+          class="full-width full-height"
+          >Cadastrar :)</button>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+      <div class="container-btn-outros">
+          Já tem uma conta?
+          <button mat-raised-button color="warn" matTooltip="{{toolTipBtnRegistrar}}" 
+          (click)="abreLogin()"
+            class="full-height">Fazer login</button>
+      </div>
+  </mat-card-actions>
+</mat-card>
+<app-progress *ngIf="iniciouCadastro"></app-progress>

@@ -1,0 +1,29 @@
+<div id="container-nlogado" class="container" *ngIf="!isLogin">
+    <button mat-raised-button color="primary" class="toolbar-components" (click)="abreLogin()">
+        Fazer login
+    </button>
+    
+    <button mat-button class="toolbar-components" (click)="criarConta()">
+        Criar conta
+    </button>
+</div>
+
+<div id="container-nlogado" class="container" *ngIf="isLogin">
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="menu"
+        class="full-height">
+        <mat-icon>account_circle</mat-icon>
+        Amilson ...
+        <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <!--<button mat-menu-item>
+            <mat-icon>face</mat-icon>
+            <span>Meus dados</span>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>input</mat-icon>
+            <span>Sair</span>
+        </button>-->
+        <app-menu-user></app-menu-user>
+    </mat-menu>
+</div>

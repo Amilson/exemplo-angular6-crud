@@ -1,0 +1,72 @@
+<app-nav></app-nav>
+<mat-sidenav-container class="container">
+        <mat-sidenav #snav [mode]="side" class="example-sidenav" [fixedInViewport]="fixed">
+            <mat-toolbar>
+                    <button mat-icon-button (click)="abreMenuLateral(true)">
+                        <mat-icon>
+                            menu
+                        </mat-icon>
+                    </button>
+                    Menu
+            </mat-toolbar>
+            <mat-nav-list>
+                <mat-expansion-panel (opened)="panelOpenState = true"
+                                    (closed)="panelOpenState = false"
+                                    class="full-width"
+                                    expanded="true"
+                                    >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Declarações
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p><button mat-raised-button color="primary" class="full-width"
+                        (click)="abreDeclaracao('cadastro')"
+                        >Cadastro</button></p>
+                    <p><button mat-raised-button color="primary" class="full-width"
+                        (click)="abreDeclaracao('analise-rel')"
+                        >Análise/Relatórios</button></p>
+                </mat-expansion-panel>
+            </mat-nav-list>
+            <mat-nav-list>
+                <mat-expansion-panel (opened)="panelOpenState = true"
+                                    (closed)="panelOpenState = false"
+                                    class="full-width">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Clientes
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p><button mat-raised-button color="primary" class="full-width"
+                        (click)="abreClientes('cadastro')"
+                        >Cadastro</button></p>
+                </mat-expansion-panel>
+            </mat-nav-list>
+            <mat-nav-list>
+            </mat-nav-list>
+        </mat-sidenav>
+    
+        <mat-sidenav-content>
+            <mat-drawer-container class="container-interno">
+                <mat-drawer mode="side" opened="true" class="container-left">
+                    <div>
+                        <button mat-icon-button (click)="abreMenuLateral(true)">
+                            <mat-icon>
+                                menu
+                            </mat-icon>
+                        </button>
+                    </div>
+                </mat-drawer>
+                <mat-drawer-content>
+                    <app-header-main></app-header-main>
+                    <router-outlet></router-outlet>
+                </mat-drawer-content>
+            </mat-drawer-container>
+        </mat-sidenav-content>
+    </mat-sidenav-container>

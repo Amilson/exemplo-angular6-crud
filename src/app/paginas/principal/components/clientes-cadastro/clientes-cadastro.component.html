@@ -1,0 +1,109 @@
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="dadosPessoaisForm">
+    <form [formGroup]="dadosPessoaisForm"
+    fxLayout="column" fxLayoutAlign="start stretch" (ngSubmit)="proximoDadosPessoais()">
+      <ng-template matStepLabel>Dados Pessoais</ng-template>
+        <mat-card>
+          <mat-card-title>
+              Quem estou cadastrando?
+          </mat-card-title>
+          <mat-card-content>
+            <p>
+              <mat-radio-group>
+                <p>
+                  <mat-radio-button value="fisica" checked="true" >Pessoa física</mat-radio-button>
+                </p>
+                <p>
+                  <mat-radio-button value="juridica">Pessoa jurídica</mat-radio-button>
+                </p>
+              </mat-radio-group>
+            </p>
+            <p>
+              <mat-form-field>
+                <input matInput placeholder="Nome" formControlName="nome" required id="nome">
+              </mat-form-field>
+              <mat-error *ngIf="formErrors.nome">{{ formErrors.nome }}</mat-error>
+            </p>
+            <mat-form-field>
+              <input matInput placeholder="Sobrenome" id="sobrenome">
+            </mat-form-field>
+          </mat-card-content>
+          <div>
+            <button mat-raised-button color="primary" matStepperNext
+            [disabled]="!dadosPessoaisForm.valid">Próximo</button>
+          </div>
+        </mat-card>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="documentosForm">
+    <form [formGroup]="documentosForm"
+    fxLayout="column" fxLayoutAlign="start stretch">
+      <ng-template matStepLabel>Documentos</ng-template>
+        <mat-card>
+          <mat-card-content>
+            <mat-form-field>    
+              <input matInput placeholder="CPF" formControlName="cpf" required>
+            </mat-form-field>
+            <mat-form-field>    
+              <input matInput placeholder="CNPJ" formControlName="cnpj" required>
+            </mat-form-field>
+            <mat-form-field>    
+              <input matInput placeholder="RG" formControlName="rg">
+            </mat-form-field>
+          </mat-card-content>
+          <div>
+            <button mat-raised-button matStepperPrevious>Voltar</button>
+            <button mat-raised-button color="primary" matStepperNext
+            [disabled]="!documentosForm.valid">Próximo</button>
+          </div>
+        </mat-card>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="contatoForm">
+      <form [formGroup]="contatoForm"
+      fxLayout="column" fxLayoutAlign="start stretch">
+        <ng-template matStepLabel>Contato</ng-template>
+          <mat-card>
+            <mat-card-content>
+              <mat-form-field>    
+                <input matInput placeholder="Telefone" formControlName="telefone">
+              </mat-form-field>
+              <mat-form-field>    
+                <input matInput placeholder="Celular" formControlName="celular" required>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
+        <div>
+          <button mat-raised-button matStepperPrevious>Voltar</button>
+          <button mat-raised-button color="primary" matStepperNext
+          [disabled]="!contatoForm.valid">Próximo</button>
+        </div>
+      </form>
+    </mat-step>
+  <mat-step [stepControl]="enderecoForm">
+    <form [formGroup]="enderecoForm">
+      <ng-template matStepLabel>Endereço</ng-template>
+      <p>
+        <mat-form-field>
+          <input matInput placeholder="Logradouro" formControlName="logradouro" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Número" formControlName="numero" required>
+        </mat-form-field>
+      </p>
+      <div>
+        <button mat-raised-button matStepperPrevious>Voltar</button>
+        <button mat-raised-button color="primary" matStepperNext
+        [disabled]="!enderecoForm.valid">Próximo</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Concluir</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
